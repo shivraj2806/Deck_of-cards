@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Deck_Of_Cards {
-
         Scanner scanner=new Scanner(System.in);
 
         ArrayList<String> cards=new ArrayList<>();
@@ -31,9 +30,33 @@ public class Deck_Of_Cards {
         public void addPlayer(){
             System.out.println("how many player to add:");
             int noOfPlayer= scanner.nextInt();
-            if(noOfPlayer>2 || noOfPlayer<5){
+            if(noOfPlayer>2 || noOfPlayer<5) {
+                playerCards(noOfPlayer);
+
+            }
+            else{
                 System.out.println("enter no of player between 2 to 4");
             }
         }
-    }
 
+        public void playerCards(int player){
+            for(int i=1;i<=player;i++){
+
+                System.out.println("player has cards"+i);
+                shuffleCards(cards);
+
+            }
+        }
+
+        public void shuffleCards(ArrayList<String> cards){
+            ArrayList<String> temp=new ArrayList<>();
+            while(!cards.isEmpty()){
+                int location=(int)(Math.random() *cards.size());
+                temp.add(cards.get(location));
+                cards.remove(location);
+            }
+            cards=temp;
+            display(cards);
+        }
+
+    }
